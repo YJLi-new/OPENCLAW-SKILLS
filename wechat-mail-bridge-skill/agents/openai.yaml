@@ -1,6 +1,0 @@
-interface:
-  display_name: "WeChat Mail Bridge"
-  short_description: "Bridge WeChat mail-query workflows"
-  default_prompt: "Use $wechat-mail-bridge to handle a WeChat mail-query command or inspect current bridge state."
-policy:
-  allow_implicit_invocation: true

@@ -1,9 +1,9 @@
 ---
 name: wechat-mail-bridge
-description: Use this skill for deterministic WeChat to mail-query bridge workflows, including parsing `/mail` and `/watch` style commands, extracting a single target email, and using the bridge tool or admin endpoints to inspect jobs, commands, receipts, bindings, and watches without exposing secrets.
+description: Use this skill for Windows-side OpenClaw WeChat to mail-query bridge workflows, including parsing `/mail` and `/watch` style commands, extracting a single target email, and using bridge routes to inspect jobs, commands, receipts, bindings, and watches without exposing secrets.
 ---
 
-Use this skill when handling WeChat group mail-query workflows.
+Use this skill when handling Windows-side OpenClaw WeChat group mail-query workflows.
 
 ## Supported commands
 
@@ -30,6 +30,7 @@ Use this skill when handling WeChat group mail-query workflows.
 4. Use bounded watch flow for `/watch`, `/mail-watch`, and `监控`.
 5. Keep group replies concise and operational.
 6. Do not expose secrets, tokens, raw credentials, or unnecessary raw mail content.
+7. Assume the OpenClaw plugin and Windows sidecar are already installed and configured; this skill should not embed host-specific secrets or paths.
 
 ## Bridge routes and tooling
 
