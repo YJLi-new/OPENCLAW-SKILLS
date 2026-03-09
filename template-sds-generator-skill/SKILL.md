@@ -1,6 +1,6 @@
 ---
 name: template-sds-generator
-version: "0.2.0"
+version: "0.2.1"
 description: Generate a deterministic, template-preserving 16-section SDS/MSDS package from 1 DOCX template, 1 prompt/rule file, and 1-3 source SDS/MSDS files, with DOCX/PDF output plus structured JSON, provenance CSV, and review checklist artifacts.
 homepage: https://github.com/YJLi-new/OPENCLAW-SKILLS/tree/main/template-sds-generator-skill
 user-invocable: true
@@ -18,6 +18,7 @@ Use `{baseDir}` to refer to this skill folder.
 - OCR is optional. If scanned PDFs are expected, `tesseract` must be available on the host or in the sandbox/container runtime.
 - PDF export requires `soffice` or `libreoffice` on the execution runtime.
 - This package is self-bootstrapping at runtime: the Python launcher creates `.venv` and installs `requirements.lock` inside the skill folder on first use.
+- ClawHub publishes text files only. The fallback base template `assets/templates/sds_base.docx` is generated locally on first use when it is missing.
 
 ## Canonical entrypoint
 
