@@ -1,25 +1,63 @@
 ---
 name: template-sds-generator
-description: Use this skill for deterministic, template-preserving SDS/MSDS generation from 1 layout template DOCX, 1 prompt/rule file, and 1-3 source SDS/MSDS evidence files, producing DOCX, PDF, JSON, provenance CSV, and review checklist outputs without inventing safety-critical data.
+description: Generate a deterministic, template-preserving 16-section SDS/MSDS package from 1 DOCX template, 1 prompt/rule file, and 1-3 source SDS/MSDS files, with DOCX/PDF output plus structured JSON, provenance CSV, and review checklist artifacts.
+metadata: {"openclaw":{"emoji":"🧪","os":["darwin","linux","win32"],"requires":{"anyBins":["python3","python","py"]},"skillKey":"template-sds-generator"}}
 ---
 
-Use this skill when a user needs a traceable 16-section SDS package that must preserve a supplied Word template.
+Use this skill when the user wants a traceable SDS/MSDS package that must preserve a supplied Word template.
 
-## Inputs
+Use `{baseDir}` to refer to this skill folder.
 
-- 1 template file in `.docx`
-- 1 prompt or rule file in `.txt` or `.md`
-- 1-3 SDS/MSDS evidence files in `.pdf`, `.docx`, or `.txt`
+## Preconditions
+
+- Before production use, replace the placeholder company block in `{baseDir}/config/fixed_company.yml` with the owning company's approved supplier information.
+- The runtime needs Python 3.11+.
+- OCR is optional. If scanned PDFs are expected, `tesseract` must be available on the host or in the sandbox/container runtime.
+- PDF export requires `soffice` or `libreoffice` on the execution runtime.
+
+## Canonical entrypoint
+
+Prefer the bundled cross-platform Python launcher instead of shell-only wrappers:
+
+```text
+python3 {baseDir}/scripts/run_openclaw_skill.py --template-docx <template.docx> --prompt-file <rules.txt> --sources <source1> [<source2> <source3>] --outdir <target> --mode draft
+```
+
+Windows launcher variants:
+
+```text
+py {baseDir}\scripts\run_openclaw_skill.py --template-docx <template.docx> --prompt-file <rules.txt> --sources <source1> [<source2> <source3>] --outdir <target> --mode draft
+python {baseDir}\scripts\run_openclaw_skill.py --template-docx <template.docx> --prompt-file <rules.txt> --sources <source1> [<source2> <source3>] --outdir <target> --mode draft
+```
 
 ## Workflow
 
-1. Before production use, replace the placeholder company block in `config/fixed_company.yml` with the owning company's approved supplier information.
-2. Run `bash scripts/run_openclaw_skill.sh --template-docx <template.docx> --prompt-file <rules.txt> --sources <source1> [<source2> <source3>] --outdir <target> --mode draft [--enable-ocr] [--issue-date YYYY-MM-DD] [--revision-date YYYY-MM-DD] [--version N]`.
-3. Use `--enable-ocr` only for scanned PDFs. If no OCR backend is available, the run fails clearly.
-4. If the runtime looks incomplete, run `bash scripts/runtime_doctor.sh` first.
-5. Return the generated files from `outputs/runs/.../final` and inspect `outputs/runs/.../audit` when provenance or review details matter.
+1. If the runtime looks incomplete, run:
+   `python3 {baseDir}/scripts/runtime_doctor.py`
+   On Windows use `py` or `python`.
+2. Run the canonical entrypoint. The launcher creates or repairs `.venv`, installs `requirements.lock`, and generates a generic base template if `assets/templates/sds_base.docx` is missing.
+3. Use `--enable-ocr` only when scanned PDFs are expected. If no OCR backend is available, the run fails clearly.
+4. Return the generated files from `outputs/runs/.../final`.
+5. When provenance or review details matter, inspect `outputs/runs/.../audit`.
 
-## Release guardrails
+## Output expectations
+
+Primary deliverables:
+
+- `final/sds_document.docx`
+- `final/sds_document.pdf` when a PDF engine is available
+- `final/structured_data.json`
+- `final/field_source_map.csv`
+- `final/review_checklist.md`
+
+Audit outputs may also include:
+
+- `audit/content_policy_report.json`
+- `audit/ocr_audit.json`
+- `audit/field_source_map.md`
+- `run_manifest.json`
+
+## Guardrails
 
 - Preserve the supplied template layout. Do not clear the document body when the user provides a client template.
 - Do not invent safety-critical values such as GHS classifications, UN numbers, packing groups, flash points, LD50 values, or regulatory identifiers.
