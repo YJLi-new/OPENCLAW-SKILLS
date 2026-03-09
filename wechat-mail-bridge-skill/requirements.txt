@@ -1,0 +1,6 @@
+# Companion Windows sidecar/runtime dependencies for this skill's bridge workflow.
+requests>=2.32.0
+pydantic>=2.10.0
+uiautomation>=2.0.20
+pillow>=10.4.0
+pytesseract>=0.3.10
