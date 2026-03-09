@@ -1,0 +1,54 @@
+# Changelog
+
+## 0.1.0 - 2026-03-09
+
+- Initial plugin-first repository scaffold.
+- Added plugin runtime routes, parser, formatter, SQLite state.
+- Added mock and BHMailer HTTP mail adapters.
+- Added Windows sidecar skeleton with adapter boundary and mock flow.
+- Added push-webhook watch subscription correlation and timeout sweeper.
+- Added optional sidecar webhook proxy and diagnostics server.
+- Added admin watch/queue utility routes and CI/issue template scaffolding.
+- Added maintenance lifecycle: stale-claim requeue, dedupe pruning, watch close, and maintenance API.
+- Added monitoring pause/resume operator controls.
+- Added manual rerun-last-query operator route.
+- Added delivery receipts listing endpoint for operations.
+- Added optional HMAC request-signing auth mode for sidecar requests.
+- Added sidecar heartbeat ingest/list endpoints and periodic sidecar heartbeat emission.
+- Added job listing endpoint for operator state-machine visibility.
+- Added BHMailer `mailExtract` enrichment path for non-default extraction profiles.
+- Added webhook target fallback via `targetChatName` + group binding resolution.
+- Added plugin Dockerfile and example docker-compose for plugin-only runtime.
+- Added API reference document for plugin routes.
+- Added authenticated detailed health endpoint for admin diagnostics.
+- Added operator group-binding APIs and alias resolution for manual tool/rerun routes.
+- Added built-in chat admin commands (`/mail-health`, `/mail-bind list`, `/mail-pause`, `/mail-resume`).
+- Added `/mail-last <email>` chat command and `/mail-watch` trigger alias.
+- Added in-group binding management commands (`/mail-bind set`, `/mail-bind del`).
+- Added `/mail-bind get` and binding resolve API, and fixed in-group binding alias parsing.
+- Added `/mail-flush` in-group queue override command.
+- Upgraded `pywinauto`/`uiautomation` adapters to experimental generic inbound polling.
+- Added short self-echo suppression window in experimental desktop pollers.
+- Added release checklist and PR template scaffolding.
+- Added minimal plugin config schema scaffold in `openclaw.plugin.json`.
+- Added retention lifecycle config (`JOB_RETENTION_HOURS`) and sidecar stale threshold (`SIDECAR_STALE_SEC`).
+- Added job status-count summary endpoint and detailed health status counts.
+- Added outbound command listing endpoint for queue diagnostics.
+- Added sidecar Windows executable build script (`scripts/build_exe.ps1`).
+- Added fake BHMailer server + smoke event scripts for local integration rehearsal.
+- Added optional inbound secret protection for local sidecar webhook proxy.
+- Fixed sidecar `ack` call path to always use authenticated/retrying bridge request logic.
+- Tightened sidecar HTTP retry policy to avoid retries on non-retriable `4xx` responses.
+- Added local sidecar send retries before marking outbound command delivery as failed.
+- Added optional replay nonce support (`x-bridge-nonce`) on sidecar requests + plugin auth checks.
+- Set sidecar webhook proxy `inbound_secret` secure default to `local-webhook-secret`.
+- Added sidecar bridge-client unit tests for bearer/HMAC authenticated `ack` requests.
+- Added sidecar send-loop unit tests for retry-success and retry-failure ACK behavior.
+- Expanded `openclaw.plugin.json` config schema to full bridge/wechat/mail/reply/privacy shape.
+- Added plugin route integration tests for nonce replay protection behavior.
+- Added plugin route integration tests for end-to-end roundtrip (`events -> claim -> ack -> receipts/jobs`).
+- Added plugin route integration tests for push-mode roundtrip (`/watch -> webhook -> claim -> ack`).
+- Added operator curl example doc for bearer/HMAC auth and newer admin endpoints.
+- Added `plugin/scripts/smoke_roundtrip.sh` and `npm run smoke:roundtrip` for local bridge path rehearsal.
+- Added `plugin/scripts/smoke_push_roundtrip.sh` and `npm run smoke:push-roundtrip` for push-mode rehearsal.
+- Added docs, examples, CI workflows, and issue templates.

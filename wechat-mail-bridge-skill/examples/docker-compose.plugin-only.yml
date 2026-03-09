@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  wechat-mail-bridge-plugin:
+    build:
+      context: ../plugin
+    environment:
+      BRIDGE_SHARED_SECRET: dev-bridge-secret
+      SQLITE_PATH: /data/wechat-mail-bridge.db
+      MAIL_BACKEND: mock
+      PORT: 8787
+    ports:
+      - "8787:8787"
+    volumes:
+      - plugin_data:/data
+
+volumes:
+  plugin_data:
+
