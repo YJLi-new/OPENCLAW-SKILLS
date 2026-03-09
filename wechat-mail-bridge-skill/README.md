@@ -1,3 +1,29 @@
+# WeChat Mail Bridge Release Bundle
+
+This directory is the public Windows-oriented release bundle for the OpenClaw WeChat-to-mail bridge.
+
+## Fastest path
+
+1. Read [INSTALL-WINDOWS.md](INSTALL-WINDOWS.md).
+2. Run `scripts\\init-local-configs.bat`.
+3. Edit `plugin\\.env` and `runtime-config\\windows-sidecar.toml`.
+4. Start with `scripts\\start-plugin-dev.bat` and `scripts\\start-sidecar-dev.bat`.
+
+## User-facing entry points
+
+- `config/`: clean templates to copy from.
+- `runtime-config/`: local editable config copies.
+- `scripts/`: Windows batch entrypoints for install, start, probe, and build.
+- `docs/`: reference documentation.
+- `plugin/` and `windows-sidecar/`: full source trees.
+
+## Release packaging rules
+
+- No host-specific paths, private logs, local databases, or machine caches are included.
+- Secrets belong in local config or environment variables only.
+- The top-level `config/` plus `runtime-config/` layout is the intended starting point for Windows users.
+
+---
 # openclaw-wechat-mail-bridge
 
 Plugin-first WeChat group -> mail query -> group reply bridge.
