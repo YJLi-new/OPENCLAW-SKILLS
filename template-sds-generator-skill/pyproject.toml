@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sds-generator"
-version = "0.1.0"
+version = "0.2.0"
 description = "Deterministic, traceable SDS generator for OpenClaw"
 readme = "SKILL.md"
 requires-python = ">=3.11"
@@ -27,10 +27,6 @@ dev = [
 
 [project.scripts]
 sds-generator = "sds_generator.cli:main"
-
-[tool.pytest.ini_options]
-pythonpath = ["src"]
-testpaths = ["tests"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}

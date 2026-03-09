@@ -1,7 +1,10 @@
 ---
 name: template-sds-generator
+version: "0.2.0"
 description: Generate a deterministic, template-preserving 16-section SDS/MSDS package from 1 DOCX template, 1 prompt/rule file, and 1-3 source SDS/MSDS files, with DOCX/PDF output plus structured JSON, provenance CSV, and review checklist artifacts.
-metadata: {"openclaw":{"emoji":"🧪","os":["darwin","linux","win32"],"requires":{"anyBins":["python3","python","py"]},"skillKey":"template-sds-generator"}}
+homepage: https://github.com/YJLi-new/OPENCLAW-SKILLS/tree/main/template-sds-generator-skill
+user-invocable: true
+metadata: {"openclaw":{"emoji":"🧪","homepage":"https://github.com/YJLi-new/OPENCLAW-SKILLS/tree/main/template-sds-generator-skill","os":["darwin","linux","win32"],"requires":{"anyBins":["python3","python","py"]},"skillKey":"template-sds-generator"}}
 ---
 
 Use this skill when the user wants a traceable SDS/MSDS package that must preserve a supplied Word template.
@@ -14,6 +17,7 @@ Use `{baseDir}` to refer to this skill folder.
 - The runtime needs Python 3.11+.
 - OCR is optional. If scanned PDFs are expected, `tesseract` must be available on the host or in the sandbox/container runtime.
 - PDF export requires `soffice` or `libreoffice` on the execution runtime.
+- This package is self-bootstrapping at runtime: the Python launcher creates `.venv` and installs `requirements.lock` inside the skill folder on first use.
 
 ## Canonical entrypoint
 
