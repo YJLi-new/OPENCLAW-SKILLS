@@ -1,13 +1,13 @@
 ---
 name: openclaw-wechat-mail-bridge-windows
-description: Install, configure, run, and troubleshoot the Windows/OpenClaw WeChat-to-mail bridge bundle, including the OpenClaw plugin and Windows sidecar.
-homepage: https://github.com/YJLi-new/OPENCLAW-SKILLS/tree/main/wechat-mail-bridge-skill
-metadata: {"openclaw":{"emoji":"📬","homepage":"https://github.com/YJLi-new/OPENCLAW-SKILLS/tree/main/wechat-mail-bridge-skill"}}
+description: Install, configure, run, and troubleshoot a Windows WeChat desktop automation and BHMailer/OpenClaw mail bridge bundle, including File Transfer Assistant workflows, plugin config, sidecar setup, and operations.
+homepage: https://github.com/YJLi-new/OPENCLAW-SKILLS/tree/main/wechat-mail-bridge-skill/clawhub-openclaw-wechat-mail-bridge-windows
+metadata: {"openclaw":{"emoji":"💬📨","homepage":"https://github.com/YJLi-new/OPENCLAW-SKILLS/tree/main/wechat-mail-bridge-skill/clawhub-openclaw-wechat-mail-bridge-windows"}}
 ---
 
 # OpenClaw WeChat Mail Bridge (Windows)
 
-Use this skill when the user wants to install, configure, run, package, or troubleshoot the WeChat-to-mail bridge on OpenClaw with a Windows WeChat sidecar.
+Use this skill when the user wants to install, configure, run, package, or troubleshoot a Windows WeChat desktop automation bridge that connects OpenClaw, BHMailer-backed mail queries, File Transfer Assistant testing, and the Windows sidecar runtime.
 
 ## Read these files first
 
@@ -15,6 +15,7 @@ Use this skill when the user wants to install, configure, run, package, or troub
 - Plugin config reference: `{baseDir}/references/config.md`
 - Sidecar config reference: `{baseDir}/references/sidecar-config.md`
 - Runtime and operational checks: `{baseDir}/references/operations.md`
+- Release notes: `{baseDir}/references/release-notes.md`
 
 ## User-facing resources in this bundle
 
@@ -31,10 +32,12 @@ Use this skill when the user wants to install, configure, run, package, or troub
 - Prefer the top-level `scripts/*.bat` entry points for local Windows setup.
 - If the user asks for deeper implementation detail, inspect the shipped source under `bundle/`.
 
-## Common operator intents
+## Search keywords and operator intents
 
-- Bring up the bridge locally.
-- Prepare or edit sidecar/plugin config.
-- Build the Windows sidecar executable.
-- Debug plugin-side or sidecar-side startup issues.
-- Review supported WeChat mail commands such as `/mail`, `/watch`, `/mail-health`, and related control commands.
+- OpenClaw WeChat mail bridge
+- Windows WeChat desktop automation
+- BHMailer mail query bridge
+- File Transfer Assistant testing
+- Windows sidecar setup and troubleshooting
+- Plugin config, startup, health probe, and sidecar EXE build
+- WeChat mail commands such as `/mail`, `/watch`, `/mail-health`, `/mail-bind`, `/mail-pause`, and `/mail-resume`
